@@ -1,14 +1,11 @@
-import React, {useContext} from 'react'
-import NewsContext from '../../context/news/newsContext'
+import React, {Fragment} from 'react'
 import NewsContainer from '../news/NewsContainer'
 
-export const News = () => {
-  const newsContext = useContext(NewsContext)
-  const { news } = newsContext
+const News = () => {  
   return (
-    <div>
-     <NewsContainer />
-    </div>
+    <Fragment>
+      <NewsContainer />
+    </Fragment>
   )
 }
 export default News;

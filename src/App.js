@@ -16,9 +16,10 @@ const App = () => {
       <Fragment>
         <Menu title={title}/>
         <Container>
-        <Switch>
+        <Switch>          
           <Route exac path='/about' component={About}></Route>
           <Route exac path='/news' component={News}></Route>
+          <Route exac path='/' component={Home}></Route>
         </Switch>
         </Container>
       </Fragment>
