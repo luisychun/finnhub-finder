@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, { useReducer } from 'react';
 import axios from 'axios';
 import NewsContext from './newsContext';
 import NewsReducer from './newsReducer';

@@ -1,17 +1,27 @@
 import React from 'react'
-import {Card, Button} from 'react-bootstrap'
+import { Card, Button, Badge } from 'react-bootstrap'
 
-export const NewsItem = ( {newItem: {image, headline, summary}} ) => {  
+const NewsItem = ( {newsItem: {image, headline, summary, url, category}} ) => {
+
   return (
-    <Card className="mt-2">
-      <Card.Img variant="top" src={image} style={{ height: '220px' }}/>
+    <Card style={{ margin: '0.5rem' }}>
+      <Card.Img variant="top" src={image} />
       <Card.Body>
-        <Card.Title style={{ height: '100px' }}>{headline}</Card.Title>
-        <Card.Text style={{ height: '120px' }}>
-          {summary.length > 0 ? summary.substring(0, 200)+'...': ''}
+        <Card.Title>{headline}</Card.Title>
+        <h5>
+          <Badge pill variant={category === 'top news'? 'dark': 'light'} style={{ marginBottom: '0.75rem' }}>
+            {category}
+          </Badge>
+        </h5>
+        <Card.Text>
+          {summary}
         </Card.Text>
-        <Button variant="dark">Read More</Button>
       </Card.Body>
+      <Card.Footer className="text-center">
+        <Button variant="dark" href={url} target="_blank" style={{ boxShadow: 'none' }}>Read More</Button>
+      </Card.Footer>
     </Card>
   )
 }
+
+export default NewsItem

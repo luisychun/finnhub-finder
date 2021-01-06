@@ -1,8 +1,8 @@
-import React, {Fragment} from 'react'
-import {Nav, Navbar, Container} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import React, { Fragment } from 'react'
+import { Nav, Navbar, Container } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-export const Menu = ({ title }) => {
+const Menu = ({ title }) => {
   return (
     <Fragment>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
