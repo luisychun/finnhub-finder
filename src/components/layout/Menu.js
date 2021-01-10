@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Menu = ({ title }) => {
   return (
     <Fragment>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="sticky-top">
         <Container>
           <Link to='/'>
             <Navbar.Brand>{title}</Navbar.Brand>
@@ -14,7 +14,7 @@ const Menu = ({ title }) => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">              
               <Link to='/' style={linkStyle} className="mr-3">Home</Link>
-              <Link to='/about' style={linkStyle} className="mr-3">About</Link>
+              {/* <Link to='/about' style={linkStyle} className="mr-3">About</Link> */}
               <Link to='/news' style={linkStyle}>News</Link>
             </Nav>
           </Navbar.Collapse>

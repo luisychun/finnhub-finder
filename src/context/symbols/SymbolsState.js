@@ -16,7 +16,7 @@ const SymbolsState = (props) => {
   // Get Symbols
   const getSymbols = async symbol => {
     setLoading()
-    const res = await axios.get(`https://finnhub.io/api/v1/search?q=${symbol}&token=bvo4ohv48v6rbvarlhsg`)
+    const res = await axios.get(`https://finnhub.io/api/v1/search?q=${symbol}&token=${process.env.REACT_APP_FINNHUB_TOKEN}`)
     let data = res.data
     dispatch({
       type: GET_SYMBOLS,
@@ -27,7 +27,7 @@ const SymbolsState = (props) => {
   // Get Profile
   const getProfile = async symbol => {
     setLoading()
-    const res = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=bvo4ohv48v6rbvarlhsg`)
+    const res = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${process.env.REACT_APP_FINNHUB_TOKEN}`)
 
     dispatch({
       type: GET_PROFILE,

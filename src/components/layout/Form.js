@@ -27,9 +27,9 @@ const FormPage = () => {
       <Form onSubmit={onSubmit}>
         <Form.Group>
           <Form.Label>Company Symbol</Form.Label>
-          <Form.Control type="text" placeholder="Enter symbol" value={symbol} onChange={onChange}/>
+          <Form.Control type="text" placeholder="Enter symbol" value={symbol} onChange={onChange} required/>
           <Form.Text className="text-muted">
-            Example: apple
+            Example: tesla, apple, oracle...
           </Form.Text>
         </Form.Group>
         <Button variant="dark" type="submit" style={{ boxShadow: 'none' }}>

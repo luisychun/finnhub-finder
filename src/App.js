@@ -4,6 +4,7 @@ import About from './components/pages/About'
 import News from './components/pages/News'
 import Menu from './components/layout/Menu'
 import SymbolProfile from './components/symbols/SymbolProfile'
+import NotFound from './components/pages/NotFound'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import { Fragment } from 'react'
@@ -24,7 +25,9 @@ const App = () => {
               <Route exact path='/symbol/:symbol' render={props => 
                 (<SymbolProfile {...props} />)} />
               <Route exact path='/about' component={About}></Route>
-              <Route exact path='/news' component={News}></Route>              
+              <Route exact path='/news' component={News}></Route>
+
+              <Route path='/' component={NotFound} />
             </Switch>
             </Container>
           </Fragment>

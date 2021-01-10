@@ -2,19 +2,20 @@ import React, { useContext, useEffect, useState, Fragment } from 'react'
 import SymbolsContext from '../../context/symbols/symbolsContext'
 import Spinner from '../layout/Spinner'
 import axios from 'axios'
-import { Card, Badge } from 'react-bootstrap';
+import { CardGroup, Card, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import NewsContainer from '../news/NewsContainer'
 
 const SymbolProfile = ({ match }) => {
   // const symbolsContext = useContext(SymbolsContext)
 
-  const [profile, setProfile] = useState({})
+  const [profile, setProfile] = useState({})  
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const getProfile = async () => {      
       setLoading(true)
-      const res = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${match.params.symbol}&token=bvo4ohv48v6rbvarlhsg`)
+      const res = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${match.params.symbol}&token=${process.env.REACT_APP_FINNHUB_TOKEN}`)
       setProfile(res.data)
       setLoading(false)
     }
@@ -22,8 +23,7 @@ const SymbolProfile = ({ match }) => {
     getProfile()    
   },[])
 
-  const {
-    country,
+  const {    
     currency,
     exchange,
     finnhubIndustry,
@@ -31,10 +31,8 @@ const SymbolProfile = ({ match }) => {
     logo,
     marketCapitalization,
     name,
-    phone,
-    shareOutstanding,
-    ticker,
-    weburl
+    weburl,
+    ticker
   } = profile
 
   const abbreviate_number = (num, fixed) => {
@@ -65,6 +63,9 @@ const SymbolProfile = ({ match }) => {
   } else {
     return (
       <Fragment>
+        <Link to='/' className="btn btn-light mt-3">
+          Back To Search 
+        </Link>
         <Card style={ gridDisplay } className="mt-2 mt-lg-4">
           <div style={imgContainer}>            
             {logo && <Card.Img variant="top" src={ logo } style={roundImage} />}
@@ -88,11 +89,9 @@ const SymbolProfile = ({ match }) => {
             </div>            
             <a href={weburl} className="btn btn-dark my-1" target="_blank" style={{ boxShadow: 'none' }}>Visit Site</a>
           </Card.Body>
-        </Card>
-        <div style={imgContainer} className="mt-2 mt-lg-4">
-          <Link to='/' className="btn btn-light">
-            Back To Search 
-          </Link>
+        </Card>        
+        <div>
+          <NewsContainer news={ticker} />
         </div>
       </Fragment>
     )

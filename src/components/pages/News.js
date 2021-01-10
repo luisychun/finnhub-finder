@@ -4,7 +4,7 @@ import NewsContainer from '../news/NewsContainer'
 const News = () => {  
   return (
     <Fragment>
-      <NewsContainer />
+      <NewsContainer news="common"/>
     </Fragment>
   )
 }

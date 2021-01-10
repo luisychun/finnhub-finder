@@ -8,7 +8,7 @@ import Spinner from '../layout/Spinner'
 import axios from 'axios'
 import newsContext from '../../context/news/newsContext'
 
-const NewsContainer = () => {
+const NewsContainer = ( props ) => {
   // const newsContext = useContext(NewsContext)
 
   const [posts, setPosts] = useState([])
@@ -19,12 +19,23 @@ const NewsContainer = () => {
   useEffect(() => {    
     const getStockNews = async () => {      
       setLoading(true)
-      const res = await axios.get('https://finnhub.io/api/v1/news?category=general&token=bvo4ohv48v6rbvarlhsg')
+      const res = await axios.get(`https://finnhub.io/api/v1/news?category=general&token=${process.env.REACT_APP_FINNHUB_TOKEN}`)
       setPosts(res.data)
       setLoading(false)
     }
 
-    getStockNews()
+    const getProfileNews = async () => {
+      setLoading(true)      
+      const resNews = await axios.get(`https://finnhub.io/api/v1/company-news?symbol=${props.news}&from=2021-01-01&to=2021-01-05&token=${process.env.REACT_APP_FINNHUB_TOKEN}`)
+      setPosts(resNews.data)
+      setLoading(false)
+    }
+
+    if(props.news == 'common') {
+      getStockNews()
+    }else {
+      getProfileNews()
+    }    
 
     // newsContext.getStockNews()
     // setPosts(newsContext.news)
@@ -60,11 +71,10 @@ const NewsContainer = () => {
             </ResponsiveMasonry>
           </Col>
         </Row>      
-        <Row className="mt-5">
+        <Row className="mt-5 d-none d-lg-block">
           <PaginationPage postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
         </Row>
-      </Fragment>
-      
+      </Fragment>      
     )
   }
 }
