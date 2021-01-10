@@ -12,10 +12,18 @@ const SymbolProfile = ({ match }) => {
   const [profile, setProfile] = useState({})  
   const [loading, setLoading] = useState(false)
 
+  let finnhubtoken;
+
+  if(process.env.NODE_ENV !== 'production') {
+    finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
+  }else {
+    finnhubtoken = process.env.FINNHUN_TOKEN
+  }
+
   useEffect(() => {
     const getProfile = async () => {      
       setLoading(true)
-      const res = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${match.params.symbol}&token=${process.env.REACT_APP_FINNHUB_TOKEN}`)
+      const res = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${match.params.symbol}&token=${finnhubtoken}`)
       setProfile(res.data)
       setLoading(false)
     }

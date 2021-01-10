@@ -13,10 +13,19 @@ const SymbolsState = (props) => {
     loading: false
   }
 
+  let finnhubtoken;
+
+  if(process.env.NODE_ENV !== 'production') {
+    finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
+  }else {
+    finnhubtoken = process.env.FINNHUN_TOKEN
+  }
+
+
   // Get Symbols
   const getSymbols = async symbol => {
     setLoading()
-    const res = await axios.get(`https://finnhub.io/api/v1/search?q=${symbol}&token=${process.env.REACT_APP_FINNHUB_TOKEN}`)
+    const res = await axios.get(`https://finnhub.io/api/v1/search?q=${symbol}&token=${finnhubtoken}`)
     let data = res.data
     dispatch({
       type: GET_SYMBOLS,

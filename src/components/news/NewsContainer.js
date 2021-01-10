@@ -16,17 +16,26 @@ const NewsContainer = ( props ) => {
   const [postsPerPage] = useState(9)
   const [loading, setLoading] = useState(false)
 
+  let finnhubtoken;
+
+  if(process.env.NODE_ENV !== 'production') {
+    finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
+  }else {
+    finnhubtoken = process.env.FINNHUN_TOKEN
+  }
+
+
   useEffect(() => {    
     const getStockNews = async () => {      
       setLoading(true)
-      const res = await axios.get(`https://finnhub.io/api/v1/news?category=general&token=${process.env.REACT_APP_FINNHUB_TOKEN}`)
+      const res = await axios.get(`https://finnhub.io/api/v1/news?category=general&token=${finnhubtoken}`)
       setPosts(res.data)
       setLoading(false)
     }
 
     const getProfileNews = async () => {
       setLoading(true)      
-      const resNews = await axios.get(`https://finnhub.io/api/v1/company-news?symbol=${props.news}&from=2021-01-01&to=2021-01-05&token=${process.env.REACT_APP_FINNHUB_TOKEN}`)
+      const resNews = await axios.get(`https://finnhub.io/api/v1/company-news?symbol=${props.news}&from=2021-01-01&to=2021-01-05&token=${finnhubtoken}`)
       setPosts(resNews.data)
       setLoading(false)
     }
