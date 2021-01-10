@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Badge, Button } from 'react-bootstrap'
+import { Link } from "react-router-dom";
 
 const SymbolItem = ({ symbol: { description, displaySymbol, symbol, type } }) => {
   return (
@@ -13,7 +14,9 @@ const SymbolItem = ({ symbol: { description, displaySymbol, symbol, type } }) =>
             {type}
           </Badge>
           </h5>
-          <Button variant="outline-dark" href="" size="sm" style={{ boxShadow: 'none' }}>Read More</Button>          
+          <div>
+            <Link to={`/symbol/${symbol}`} className="btn btn-light my-1">Read More</Link>
+          </div>          
         </Card.Body>
       </Card>
     </div>

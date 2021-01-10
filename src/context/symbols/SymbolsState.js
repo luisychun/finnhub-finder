@@ -3,12 +3,13 @@ import axios from 'axios';
 import SymbolsContext from './symbolsContext';
 import SymbolsReducer from './symbolsReducer';
 import {
-  GET_SYMBOLS, SET_LOADING
+  GET_SYMBOLS, GET_PROFILE, SET_LOADING
 } from '../types'
 
 const SymbolsState = (props) => {
   const initialState = {
     symbols: [],
+    profile: {},
     loading: false
   }
 
@@ -23,6 +24,17 @@ const SymbolsState = (props) => {
     })
   }
 
+  // Get Profile
+  const getProfile = async symbol => {
+    setLoading()
+    const res = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=bvo4ohv48v6rbvarlhsg`)
+
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data
+    })
+  }
+
   const setLoading = () => { dispatch({type: SET_LOADING}) }
 
   const [state, dispatch] = useReducer(SymbolsReducer, initialState)
@@ -31,8 +43,10 @@ const SymbolsState = (props) => {
   value={
     {
       symbols: state.symbols,
-      loading: state.loading, 
-      getSymbols
+      loading: state.loading,
+      profile: state.profile,
+      getSymbols,
+      getProfile
     }
   }>
   {props.children}

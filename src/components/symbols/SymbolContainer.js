@@ -21,7 +21,7 @@ const SymbolContainer = () => {
             <ResponsiveMasonry columnsCountBreakPoints={{350: 1, 750: 2, 1280: 3}}>
               <Masonry>
                 {symbols && symbols.map(symbol => (                             
-                  <SymbolItem symbol={symbol}/>
+                  <SymbolItem symbol={symbol} key={symbols}/>
                 ))}
               </Masonry>
             </ResponsiveMasonry>

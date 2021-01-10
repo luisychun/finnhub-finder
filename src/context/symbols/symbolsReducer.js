@@ -1,6 +1,7 @@
 import {
   GET_SYMBOLS, 
-  SET_LOADING
+  SET_LOADING,
+  GET_PROFILE
 } from '../types'
 
 export default (state, action) => {
@@ -15,6 +16,12 @@ export default (state, action) => {
         symbols: action.payload,
         loading: false
       }
+    case GET_PROFILE:
+      return {
+        ...state,
+        profile: action.payload,
+        loading: false
+      }  
     default:
       return state;
   }
