@@ -17,7 +17,7 @@ const SymbolProfile = ({ match }) => {
   if(process.env.NODE_ENV !== 'production') {
     finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
   }else {
-    finnhubtoken = process.env.FINNHUN_TOKEN
+    finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
   }
 
   useEffect(() => {

@@ -18,7 +18,7 @@ const SymbolsState = (props) => {
   if(process.env.NODE_ENV !== 'production') {
     finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
   }else {
-    finnhubtoken = process.env.FINNHUN_TOKEN
+    finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
   }
 
 
@@ -36,7 +36,7 @@ const SymbolsState = (props) => {
   // Get Profile
   const getProfile = async symbol => {
     setLoading()
-    const res = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${process.env.REACT_APP_FINNHUB_TOKEN}`)
+    const res = await axios.get(`https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${finnhubtoken}`)
 
     dispatch({
       type: GET_PROFILE,
