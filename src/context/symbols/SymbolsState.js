@@ -3,7 +3,7 @@ import axios from 'axios';
 import SymbolsContext from './symbolsContext';
 import SymbolsReducer from './symbolsReducer';
 import {
-  GET_SYMBOLS, GET_PROFILE, SET_LOADING
+  GET_SYMBOLS, CLEAR_SYMBOLS, GET_PROFILE, SET_LOADING
 } from '../types'
 
 const SymbolsState = (props) => {
@@ -33,6 +33,11 @@ const SymbolsState = (props) => {
     })
   }
 
+  // Clear Symbols
+  const clearSymbols = () => {
+    dispatch({type: CLEAR_SYMBOLS})
+  }
+
   // Get Profile
   const getProfile = async symbol => {
     setLoading()
@@ -55,6 +60,7 @@ const SymbolsState = (props) => {
       loading: state.loading,
       profile: state.profile,
       getSymbols,
+      clearSymbols,
       getProfile
     }
   }>
