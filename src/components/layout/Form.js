@@ -3,10 +3,10 @@ import { Form, Button } from 'react-bootstrap'
 import SymbolsContext from '../../context/symbols/symbolsContext'
 
 const FormPage = () => { 
-  const symbolsContext = useContext(SymbolsContext)  
+  const symbolsContext = useContext(SymbolsContext)
+  const { symbols } = symbolsContext
 
-  const [symbol, setSymbol] = useState('')
-  const [clearBtn, setClearBtn] = useState(false)
+  const [symbol, setSymbol] = useState('')    
 
   const onChange = (e) => {    
     setSymbol(e.target.value)
@@ -18,14 +18,12 @@ const FormPage = () => {
 
     }else {
       symbolsContext.getSymbols(symbol)
-      setSymbol('')
-      setClearBtn(true)
+      setSymbol('')      
     }
   }
 
   const clearAllSymbols = (e) => {    
-    symbolsContext.clearSymbols()
-    setClearBtn(false)
+    symbolsContext.clearSymbols()    
   }
 
 
@@ -42,7 +40,7 @@ const FormPage = () => {
         <Button variant="dark" type="submit" style={{ boxShadow: 'none' }}>
           Search
         </Button>
-        { clearBtn && <Button variant="outline-dark" style={{ boxShadow: 'none' }} className="mx-2" onClick={clearAllSymbols}>
+        { (symbols && symbols.length > 0 )&& <Button variant="outline-dark" style={{ boxShadow: 'none' }} className="mx-2" onClick={clearAllSymbols}>
           Clear
         </Button>}
       </Form>

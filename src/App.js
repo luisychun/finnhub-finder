@@ -12,7 +12,7 @@ import NewsState from './context/news/NewsState'
 import SymbolsState from './context/symbols/SymbolsState'
 
 const App = () => {
-  const title = 'Stock Finder'
+  const title = 'Market News Finder'
   return (
     <SymbolsState>
       <NewsState>
