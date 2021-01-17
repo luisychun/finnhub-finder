@@ -35,7 +35,9 @@ const NewsContainer = ( props ) => {
 
     const getProfileNews = async () => {
       setLoading(true)      
-      const resNews = await axios.get(`https://finnhub.io/api/v1/company-news?symbol=${props.news}&from=2021-01-01&to=2021-01-05&token=${finnhubtoken}`)
+      let currentDt = getDate(0)
+      let previousDt = getDate(3)      
+      const resNews = await axios.get(`https://finnhub.io/api/v1/company-news?symbol=${props.news}&from=${previousDt}&to=${currentDt}&token=${finnhubtoken}`)
       setPosts(resNews.data)
       setLoading(false)
     }
@@ -58,6 +60,19 @@ const NewsContainer = ( props ) => {
   const paginate = (e) => {
     setCurrentPage(e)
     window.scrollTo(0, 0)
+  }
+
+  const getDate = (dt) => {    
+    let today = new Date();
+    today.setDate(today.getDate() - dt);
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1;
+    let yy = today
+      .getFullYear()
+      .toString()
+    dd = parseInt(dd) > 10 ? dd : `0${dd}`
+    mm = parseInt(mm) > 10 ? mm : `0${mm}`
+    return(`${yy}-${mm}-${dd}`)
   }
 
   if(loading) {
