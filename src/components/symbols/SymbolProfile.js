@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from 'react'
 import { Card, Badge } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import Spinner from '../layout/Spinner'
+import Loading from '../layout/Loading'
 import NewsContainer from '../news/NewsContainer'
 
 const SymbolProfile = ({ match }) => {
@@ -58,7 +58,7 @@ const SymbolProfile = ({ match }) => {
   }
 
   if (loading || !profile) {
-    return <Spinner />
+    return <Loading />
   } else if (!profile.name) {
     return (
       <div className="mt-2 mt-lg-4">

@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from 'react'
 import { Row, Col, CardGroup } from 'react-bootstrap'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import axios from 'axios'
-import Spinner from '../layout/Spinner'
+import Loading from '../layout/Loading'
 import PaginationPage from '../layout/Pagination'
 import NewsItem from './NewsItem'
 
@@ -31,7 +31,6 @@ const NewsContainer = (props) => {
 
     const getProfileNews = async () => {
       setLoading(true)
-      console.log(previousDt, currentDt)
       const resNews = await axios.get(
         `https://finnhub.io/api/v1/company-news?symbol=${props.news}&from=${previousDt}&to=${currentDt}&token=${finnhubtoken}`
       )
@@ -67,7 +66,13 @@ const NewsContainer = (props) => {
   }
 
   if (loading) {
-    return <Spinner />
+    return <Loading />
+  } else if (posts.length < 1) {
+    return (
+      <div className="mt-2 mt-lg-4">
+        <h3>News Not Found</h3>
+      </div>
+    )
   } else {
     return (
       <Fragment>

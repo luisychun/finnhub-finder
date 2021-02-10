@@ -1,7 +1,7 @@
 import React, { useContext, Fragment } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
-import Spinner from '../layout/Spinner'
+import Loading from '../layout/Loading'
 import SymbolItem from './SymbolItem'
 import SymbolContext from '../../context/symbol/symbolContext'
 
@@ -10,7 +10,7 @@ const SymbolContainer = () => {
   const { symbols, loading } = symbolContext
 
   if (loading) {
-    return <Spinner />
+    return <Loading />
   } else {
     return (
       <Fragment>

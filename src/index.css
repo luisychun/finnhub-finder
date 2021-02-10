@@ -12,6 +12,28 @@ code {
     monospace;
 }
 
+/* Loading CSS */
+.loading-css {
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  display: block;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #333;
+  border-radius: 50%;
+  animation: loading-360 0.8s infinite linear;
+}
+
+@keyframes loading-360 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .active-post {
   text-decoration: underline;
 }
