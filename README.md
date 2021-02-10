@@ -1,4 +1,4 @@
-## Symbol Stock News Finder
+## FinnHub Market News Finder
 
 [Link](https://stocknewsfinder.netlify.app/)
 
