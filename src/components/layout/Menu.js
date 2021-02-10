@@ -2,20 +2,31 @@ import React, { Fragment } from 'react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const Menu = ({ title }) => {
+const Menu = ({ title: { name, logo } }) => {
   return (
     <Fragment>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="sticky-top">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+        className="sticky-top"
+      >
         <Container>
-          <Link to='/'>
-            <Navbar.Brand>{title}</Navbar.Brand>
+          <Link to="/">
+            <i className={`mr-2 ${logo}`}></i>
+            <Navbar.Brand>{name}</Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ml-auto">              
-              <Link to='/' style={linkStyle} className="mr-3">Home</Link>
+            <Nav className="ml-auto">
+              <Link to="/" style={linkStyle} className="mr-3">
+                Home
+              </Link>
               {/* <Link to='/about' style={linkStyle} className="mr-3">About</Link> */}
-              <Link to='/news' style={linkStyle}>News</Link>
+              <Link to="/news" style={linkStyle}>
+                News
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -26,7 +37,7 @@ const Menu = ({ title }) => {
 
 const linkStyle = {
   color: '#fff',
-  textDecoration: 'none'
+  textDecoration: 'none',
 }
 
-export default Menu;
+export default Menu
