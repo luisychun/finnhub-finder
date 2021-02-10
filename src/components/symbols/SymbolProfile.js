@@ -1,24 +1,15 @@
-import React, { useContext, useEffect, useState, Fragment } from 'react'
-import SymbolsContext from '../../context/symbol/symbolContext'
-import Spinner from '../layout/Spinner'
-import axios from 'axios'
-import { CardGroup, Card, Badge } from 'react-bootstrap'
+import React, { useEffect, useState, Fragment } from 'react'
+import { Card, Badge } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import Spinner from '../layout/Spinner'
 import NewsContainer from '../news/NewsContainer'
 
 const SymbolProfile = ({ match }) => {
-  // const symbolsContext = useContext(SymbolsContext)
-
   const [profile, setProfile] = useState({})
   const [loading, setLoading] = useState(false)
 
-  let finnhubtoken
-
-  if (process.env.NODE_ENV !== 'production') {
-    finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
-  } else {
-    finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
-  }
+  let finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
 
   useEffect(() => {
     const getProfile = async () => {
@@ -34,12 +25,14 @@ const SymbolProfile = ({ match }) => {
   }, [])
 
   const {
+    country,
     currency,
     exchange,
     finnhubIndustry,
     ipo,
     logo,
     marketCapitalization,
+    shareOutstanding,
     name,
     weburl,
     ticker,
@@ -48,19 +41,19 @@ const SymbolProfile = ({ match }) => {
   const abbreviate_number = (num, fixed) => {
     if (num === null) {
       return null
-    } // terminate early
+    }
     if (num === 0) {
       return '0'
-    } // terminate early
-    fixed = !fixed || fixed < 0 ? 0 : fixed // number of decimal places to show
-    var b = num.toPrecision(2).split('e'), // get power
-      k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3), // floor at decimals, ceiling at trillions
+    }
+    fixed = !fixed || fixed < 0 ? 0 : fixed
+    var b = num.toPrecision(2).split('e'),
+      k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3),
       c =
         k < 1
           ? num.toFixed(0 + fixed)
-          : (num / Math.pow(10, k * 3)).toFixed(1 + fixed), // divide by power
-      d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
-      e = d + ['', 'K', 'M', 'B', 'T'][k] // append power
+          : (num / Math.pow(10, k * 3)).toFixed(1 + fixed),
+      d = c < 0 ? c : Math.abs(c),
+      e = d + ['', 'K', 'M', 'B', 'T'][k]
     return e
   }
 
@@ -92,6 +85,13 @@ const SymbolProfile = ({ match }) => {
             <div>
               <Badge
                 pill
+                variant={country === 'US' ? 'dark' : 'light'}
+                style={{ marginBottom: '0.75rem', marginRight: '0.5rem' }}
+              >
+                {country}
+              </Badge>
+              <Badge
+                pill
                 variant={currency === 'USD' ? 'dark' : 'light'}
                 style={{ marginBottom: '0.75rem', marginRight: '0.5rem' }}
               >
@@ -106,22 +106,25 @@ const SymbolProfile = ({ match }) => {
               >
                 {finnhubIndustry}
               </Badge>
-              <Badge
-                pill
-                variant="info"
-                style={{ marginBottom: '0.75rem', marginRight: '0.5rem' }}
-              >
-                {exchange}
-              </Badge>
+              <div>
+                <Badge
+                  pill
+                  variant="info"
+                  style={{ marginBottom: '0.75rem', marginRight: '0.5rem' }}
+                >
+                  {exchange}
+                </Badge>
+              </div>
               <p>IPO: {ipo}</p>
               <p>
                 Market Capitalization:{' '}
                 {abbreviate_number(marketCapitalization, 0)}
               </p>
+              <p>Share Outstanding: {shareOutstanding}</p>
             </div>
             <a
               href={weburl}
-              className="btn btn-dark my-1"
+              className="btn btn-outline-dark my-1"
               target="_blank"
               style={{ boxShadow: 'none' }}
             >

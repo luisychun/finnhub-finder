@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
-import FormPage from '../layout/Form'
+import FormPage from '../layout/FormPage'
 import SymbolContainer from '../symbols/SymbolContainer'
 
 const Home = () => {

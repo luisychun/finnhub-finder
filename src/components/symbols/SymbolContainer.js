@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState, Fragment } from 'react'
-import SymbolItem from './SymbolItem'
-import { Row, Col, CardGroup } from 'react-bootstrap'
-import Spinner from '../layout/Spinner'
-import SymbolsContext from '../../context/symbol/symbolContext'
+import React, { useContext, Fragment } from 'react'
+import { Row, Col } from 'react-bootstrap'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
+import Spinner from '../layout/Spinner'
+import SymbolItem from './SymbolItem'
+import SymbolContext from '../../context/symbol/symbolContext'
 
 const SymbolContainer = () => {
-  const symbolsContext = useContext(SymbolsContext)
-  const { symbols, loading } = symbolsContext
+  const symbolContext = useContext(SymbolContext)
+  const { symbols, loading } = symbolContext
 
   if (loading) {
     return <Spinner />
@@ -22,7 +22,7 @@ const SymbolContainer = () => {
               <Masonry>
                 {symbols &&
                   symbols.map((symbol) => (
-                    <SymbolItem symbol={symbol} key={symbols} />
+                    <SymbolItem key={symbol.symbol} symbol={symbol} />
                   ))}
               </Masonry>
             </ResponsiveMasonry>

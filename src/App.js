@@ -3,10 +3,10 @@ import { Container } from 'react-bootstrap'
 import { Fragment } from 'react'
 import Home from './components/pages/Home'
 import News from './components/pages/News'
-import Menu from './components/layout/Menu'
 import NotFound from './components/pages/NotFound'
+import Menu from './components/layout/Menu'
 import SymbolProfile from './components/symbols/SymbolProfile'
-import SymbolsState from './context/symbol/SymbolState'
+import SymbolState from './context/symbol/SymbolState'
 
 const App = () => {
   const appTitle = {
@@ -14,7 +14,7 @@ const App = () => {
     logo: 'fas fa-cloud',
   }
   return (
-    <SymbolsState>
+    <SymbolState>
       <Router>
         <Fragment>
           <Menu title={appTitle} />
@@ -32,7 +32,7 @@ const App = () => {
           </Container>
         </Fragment>
       </Router>
-    </SymbolsState>
+    </SymbolState>
   )
 }
 

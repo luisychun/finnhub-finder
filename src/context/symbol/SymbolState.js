@@ -11,13 +11,7 @@ const SymbolsState = (props) => {
     loading: false,
   }
 
-  let finnhubtoken
-
-  if (process.env.NODE_ENV !== 'production') {
-    finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
-  } else {
-    finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
-  }
+  let finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
 
   // Get Symbols
   const getSymbols = async (symbol) => {

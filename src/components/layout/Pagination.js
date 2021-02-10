@@ -1,9 +1,21 @@
 import React from 'react'
 
-const PaginationPage = ({postsPerPage, totalPosts, paginate}) => {
-  const pageNumbers = []  
+const PaginationPage = ({ postsPerPage, totalPosts, paginate, activePost }) => {
+  const pageNumbers = []
+  const getActivePost = (number) => {
+    let page = 0
+    if (activePost >= 10) {
+      page = activePost.toString()
+    } else {
+      page = activePost.toString()[0]
+    }
 
-  for(let i=1; i<=Math.ceil(totalPosts / postsPerPage); i++) {    
+    if (number == page) {
+      return `active-post`
+    }
+  }
+
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i)
   }
 
@@ -11,15 +23,21 @@ const PaginationPage = ({postsPerPage, totalPosts, paginate}) => {
     <div>
       <nav>
         <ul className="pagination">
-          {pageNumbers.map(number => (
+          {pageNumbers.map((number) => (
             <li key={number} className="page-item">
-              <a className="page-link" style={{ cursor: 'pointer', color: '#212529' }} onClick={() => paginate(number)}>{number}</a>
+              <a
+                className={`page-link ${getActivePost(number)}`}
+                style={{ cursor: 'pointer', color: '#212529' }}
+                onClick={() => paginate(number)}
+              >
+                {number}
+              </a>
             </li>
           ))}
         </ul>
-      </nav>      
+      </nav>
     </div>
   )
 }
 
-export default PaginationPage;
+export default PaginationPage

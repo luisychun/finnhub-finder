@@ -1,52 +1,55 @@
 import React, { Fragment, useState, useContext } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import SymbolsContext from '../../context/symbol/symbolContext'
+import SymbolContext from '../../context/symbol/symbolContext'
 
 const FormPage = () => {
-  const symbolsContext = useContext(SymbolsContext)
-  const { symbols } = symbolsContext
+  const symbolContext = useContext(SymbolContext)
+  const { symbols } = symbolContext
 
   const [symbol, setSymbol] = useState('')
 
   const onChange = (e) => {
-    setSymbol(e.target.value)
+    setSymbol([e.target.value])
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
     if (symbol === '') {
     } else {
-      symbolsContext.getSymbols(symbol)
+      symbolContext.getSymbols(symbol)
       setSymbol('')
     }
   }
 
   const clearAllSymbols = (e) => {
-    symbolsContext.clearSymbols()
+    symbolContext.clearSymbols()
   }
 
   return (
     <Fragment>
       <Form onSubmit={onSubmit}>
         <Form.Group>
-          <Form.Label>Company Symbol</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter symbol"
+            placeholder="Enter Symbol"
             value={symbol}
             onChange={onChange}
             required
           />
           <Form.Text className="text-muted">
-            Example: tesla, apple, oracle...
+            Example: tesla, apple, oracle and etc
           </Form.Text>
         </Form.Group>
-        <Button variant="dark" type="submit" style={{ boxShadow: 'none' }}>
+        <Button
+          variant="outline-dark"
+          type="submit"
+          style={{ boxShadow: 'none' }}
+        >
           Search
         </Button>
         {symbols && symbols.length > 0 && (
           <Button
-            variant="outline-dark"
+            variant="light"
             style={{ boxShadow: 'none' }}
             className="mx-2"
             onClick={clearAllSymbols}
