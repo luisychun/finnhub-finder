@@ -36,4 +36,19 @@ code {
 
 .active-post {
   text-decoration: underline;
+  background: #efefef !important;
+}
+
+@media (max-width: 576px) {
+  .grid-sm {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+
+  .card-center-sm {
+    text-align: center;
+  }
+
+  .page-link {
+    padding: 0.25rem 0.5rem !important;
+  }
 }

@@ -9,7 +9,7 @@ import NewsItem from './NewsItem'
 const NewsContainer = (props) => {
   const [posts, setPosts] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-  const [postsPerPage] = useState(9)
+  const [postsPerPage] = useState(12)
   const [loading, setLoading] = useState(false)
 
   let finnhubtoken = process.env.REACT_APP_FINNHUB_TOKEN
@@ -91,7 +91,7 @@ const NewsContainer = (props) => {
             </ResponsiveMasonry>
           </Col>
         </Row>
-        <Row className="mt-5 d-none d-lg-block">
+        <Row className="mt-5 d-flex justify-content-start justify-content-lg-center ml-2">
           <PaginationPage
             postsPerPage={postsPerPage}
             totalPosts={posts.length}

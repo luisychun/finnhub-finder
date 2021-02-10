@@ -74,11 +74,11 @@ const SymbolProfile = ({ match }) => {
         <Link to="/" className="btn btn-light mt-3">
           Back To Search
         </Link>
-        <Card style={gridDisplay} className="mt-2 mt-lg-4">
+        <Card style={gridDisplay} className="mt-2 mt-lg-4 grid-sm">
           <div style={imgContainer}>
             {logo && <Card.Img variant="top" src={logo} style={roundImage} />}
           </div>
-          <Card.Body>
+          <Card.Body className="card-center-sm">
             <Card.Title>
               <h2>{name}</h2>
             </Card.Title>
