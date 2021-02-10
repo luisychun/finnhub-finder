@@ -2,13 +2,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import { Fragment } from 'react'
 import Home from './components/pages/Home'
-import About from './components/pages/About'
 import News from './components/pages/News'
 import Menu from './components/layout/Menu'
-import SymbolProfile from './components/symbols/SymbolProfile'
 import NotFound from './components/pages/NotFound'
-import NewsState from './context/news/NewsState'
-import SymbolsState from './context/symbols/SymbolsState'
+import SymbolProfile from './components/symbols/SymbolProfile'
+import SymbolsState from './context/symbol/SymbolState'
 
 const App = () => {
   const appTitle = {
@@ -17,27 +15,23 @@ const App = () => {
   }
   return (
     <SymbolsState>
-      <NewsState>
-        <Router>
-          <Fragment>
-            <Menu title={appTitle} />
-            <Container>
-              <Switch>
-                <Route exact path="/" component={Home}></Route>
-                <Route
-                  exact
-                  path="/symbol/:symbol"
-                  render={(props) => <SymbolProfile {...props} />}
-                />
-                <Route exact path="/about" component={About}></Route>
-                <Route exact path="/news" component={News}></Route>
-
-                <Route path="/" component={NotFound} />
-              </Switch>
-            </Container>
-          </Fragment>
-        </Router>
-      </NewsState>
+      <Router>
+        <Fragment>
+          <Menu title={appTitle} />
+          <Container>
+            <Switch>
+              <Route exact path="/" component={Home}></Route>
+              <Route
+                exact
+                path="/symbol/:symbol"
+                render={(props) => <SymbolProfile {...props} />}
+              />
+              <Route exact path="/news" component={News}></Route>
+              <Route path="/" component={NotFound} />
+            </Switch>
+          </Container>
+        </Fragment>
+      </Router>
     </SymbolsState>
   )
 }

@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState, Fragment } from 'react'
 import NewsItem from './NewsItem'
-import NewsContext from '../../context/news/newsContext'
 import { Row, Col, CardGroup } from 'react-bootstrap'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import PaginationPage from '../layout/Pagination'
 import Spinner from '../layout/Spinner'
 import axios from 'axios'
-import newsContext from '../../context/news/newsContext'
 
 const NewsContainer = (props) => {
   // const newsContext = useContext(NewsContext)
